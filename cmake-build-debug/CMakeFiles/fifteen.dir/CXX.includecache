@@ -6,7 +6,29 @@
 
 #IncludeRegexTransform: 
 
-D:/Studia/Semestr6/SISE/fifteen/State.h
+D:/Studia/Semestr6/SISE/SISE-15/AStar.cpp
+AStar.h
+D:/Studia/Semestr6/SISE/SISE-15/AStar.h
+
+D:/Studia/Semestr6/SISE/SISE-15/AStar.h
+set
+-
+State.h
+D:/Studia/Semestr6/SISE/SISE-15/State.h
+Solution.h
+D:/Studia/Semestr6/SISE/SISE-15/Solution.h
+StatesSet.h
+D:/Studia/Semestr6/SISE/SISE-15/StatesSet.h
+
+D:/Studia/Semestr6/SISE/SISE-15/Solution.h
+
+D:/Studia/Semestr6/SISE/SISE-15/State.cpp
+State.h
+D:/Studia/Semestr6/SISE/SISE-15/State.h
+iostream
+-
+
+D:/Studia/Semestr6/SISE/SISE-15/State.h
 vector
 -
 string
@@ -14,7 +36,11 @@ string
 memory
 -
 
-D:/Studia/Semestr6/SISE/fifteen/main.cpp
+D:/Studia/Semestr6/SISE/SISE-15/StatesSet.h
+State.h
+D:/Studia/Semestr6/SISE/SISE-15/State.h
+
+D:/Studia/Semestr6/SISE/SISE-15/main.cpp
 iostream
 -
 fstream
@@ -28,5 +54,5 @@ cstdlib
 filesystem
 -
 State.h
-D:/Studia/Semestr6/SISE/fifteen/State.h
+D:/Studia/Semestr6/SISE/SISE-15/State.h
 

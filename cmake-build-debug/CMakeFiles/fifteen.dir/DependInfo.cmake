@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/Studia/Semestr6/SISE/fifteen/AStar.cpp" "D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/fifteen.dir/AStar.cpp.obj"
-  "D:/Studia/Semestr6/SISE/fifteen/State.cpp" "D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/fifteen.dir/State.cpp.obj"
-  "D:/Studia/Semestr6/SISE/fifteen/main.cpp" "D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/fifteen.dir/main.cpp.obj"
+  "D:/Studia/Semestr6/SISE/SISE-15/AStar.cpp" "D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/CMakeFiles/fifteen.dir/AStar.cpp.obj"
+  "D:/Studia/Semestr6/SISE/SISE-15/State.cpp" "D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/CMakeFiles/fifteen.dir/State.cpp.obj"
+  "D:/Studia/Semestr6/SISE/SISE-15/main.cpp" "D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/CMakeFiles/fifteen.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

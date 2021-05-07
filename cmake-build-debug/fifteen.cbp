@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug"/>
+				<Option working_dir="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="fifteen">
-				<Option output="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/fifteen.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug"/>
+				<Option output="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/fifteen.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -33,15 +33,15 @@
 					<Add directory="D:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 fifteen"/>
-					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 fifteen"/>
+					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="fifteen/fast">
-				<Option output="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/fifteen.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug"/>
+				<Option output="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/fifteen.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,55 +55,55 @@
 					<Add directory="D:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/10.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 fifteen/fast"/>
-					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 fifteen/fast"/>
+					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug"/>
+				<Option working_dir="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug"/>
+				<Option working_dir="D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/msys2/mingw64/bin/mingw32-make.exe -f &quot;D:/Studia/Semestr6/SISE/SISE-15/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/AStar.cpp">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/AStar.cpp">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/AStar.h">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/AStar.h">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/Solution.h">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/Solution.h">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/State.cpp">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/State.cpp">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/State.h">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/State.h">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/StatesSet.h">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/StatesSet.h">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/main.cpp">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/main.cpp">
 			<Option target="fifteen"/>
 		</Unit>
-		<Unit filename="D:/Studia/Semestr6/SISE/fifteen/CMakeLists.txt">
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

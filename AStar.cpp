@@ -7,8 +7,8 @@ std::shared_ptr<State> AStar::FindSolution() {
     std::vector<std::shared_ptr<State>> closedList;
     std::shared_ptr<State> currentState;
 
-    openList.insert({INT_MAX, initialState});
-    while(!openList.empty()) {
-
-    }
+//    openList.insert({INT_MAX, initialState});
+//    while(!openList.empty()) {
+//
+//    }
 }
