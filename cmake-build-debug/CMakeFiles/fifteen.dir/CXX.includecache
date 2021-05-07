@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Studia/Semestr6/SISE/fifteen/State.h
+vector
+-
+string
+-
+memory
+-
+
+D:/Studia/Semestr6/SISE/fifteen/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+ctime
+-
+cstdlib
+-
+filesystem
+-
+State.h
+D:/Studia/Semestr6/SISE/fifteen/State.h
+

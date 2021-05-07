@@ -1,0 +1,3 @@
+D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/fifteen.dir
+D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Studia/Semestr6/SISE/fifteen/cmake-build-debug/CMakeFiles/rebuild_cache.dir
