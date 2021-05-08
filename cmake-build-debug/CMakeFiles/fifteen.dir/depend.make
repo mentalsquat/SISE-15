@@ -10,6 +10,9 @@ CMakeFiles/fifteen.dir/AStar.cpp.obj: ../StatesSet.h
 CMakeFiles/fifteen.dir/State.cpp.obj: ../State.cpp
 CMakeFiles/fifteen.dir/State.cpp.obj: ../State.h
 
+CMakeFiles/fifteen.dir/main.cpp.obj: ../AStar.h
+CMakeFiles/fifteen.dir/main.cpp.obj: ../Solution.h
 CMakeFiles/fifteen.dir/main.cpp.obj: ../State.h
+CMakeFiles/fifteen.dir/main.cpp.obj: ../StatesSet.h
 CMakeFiles/fifteen.dir/main.cpp.obj: ../main.cpp
 

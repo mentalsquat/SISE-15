@@ -5,7 +5,7 @@
 
 class StatesSet {
 public:
-    float heuristic;
+    unsigned int heuristic;
     std::shared_ptr<State> state;
 
     bool operator < (const StatesSet& rhs) const { return heuristic<rhs.heuristic; }

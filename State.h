@@ -15,7 +15,7 @@ private:
     std::shared_ptr<State> previousState;
     std::vector<std::shared_ptr<State>> nextStates;
 
-    unsigned int **fields;
+    std::vector<std::vector<unsigned int>> fields;
     unsigned int height;
     unsigned int width;
     unsigned int zeroX;
@@ -25,25 +25,31 @@ private:
     char move;
     std::string moveOrder;
 public:
-    State(unsigned int **arr, unsigned int x, unsigned int y, unsigned int height, unsigned int width);
-    explicit State(std::shared_ptr<State> state);
+    State(std::vector<std::vector<unsigned int>> arr, unsigned int x, unsigned int y, unsigned int height, unsigned int width);
+    explicit State(State *state);
     virtual ~State() = default;
 
     std::shared_ptr<State> Move(char direction);
-    void Swap(const std::shared_ptr<State>& state, unsigned int x, unsigned int y) const;
+    void Swap(std::shared_ptr<State> state, int x, int y) const;
+    bool CheckIfMoveIsPossible(char direction);
 
     bool CheckSolution() const;
+    bool CompareToFields(std::shared_ptr<State> state);
+
+    void PrintFields();
+    void CopyFields(std::shared_ptr<State> other);
+    void CopyFields(unsigned int **arr);
 
     const std::shared_ptr<State> &getPreviousState() const;
     const std::vector<std::shared_ptr<State>> &getNextStates() const;
-    unsigned int **getFields() const;
+    std::vector<std::vector<unsigned int>> &getFields();
     unsigned int getHeight() const;
     unsigned int getWidth() const;
     unsigned int getZeroX() const;
     unsigned int getZeroY() const;
     unsigned int getCurrentDepth() const;
     char getMove() const;
-    const std::string &getMoveOrder() const;
+    std::string getMoveOrder();
 
     void setZeroX(unsigned int zeroX);
     void setZeroY(unsigned int zeroY);

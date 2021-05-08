@@ -2,11 +2,11 @@
 #define FIFTEEN_SOLUTION_H
 
 typedef struct Solution {
-    unsigned int lengthOfSolution = -1;
-    std::string searchOrder = "";
-    int numberOfVisitedStates = 0;
-    int numberOfProcessedStates = 0;
-    int maxRecursiveDepth = 0;
+    int lengthOfSolution = -1;
+    std::string searchOrder;
+    unsigned int numberOfVisitedStates = 0;
+    unsigned int numberOfProcessedStates = 0;
+    unsigned int maxRecursiveDepth = 0;
     float elapsedTime = 0.0f;
 } Solution;
 

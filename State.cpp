@@ -1,7 +1,7 @@
 #include "State.h"
 #include <iostream>
 
-State::State(unsigned int **arr, unsigned int x, unsigned int y, unsigned int height, unsigned int width) {
+State::State(std::vector<std::vector<unsigned int>> arr, unsigned int x, unsigned int y, unsigned int height, unsigned int width) {
     this->fields = arr;
     this->height = height;
     this->width = width;
@@ -11,50 +11,37 @@ State::State(unsigned int **arr, unsigned int x, unsigned int y, unsigned int he
     this->currentDepth = 0;
 }
 
-State::State(std::shared_ptr<State> state) {
+State::State(State *state) {
     this->fields = state->getFields();
+    this->height = state->getHeight();
+    this->width = state->getWidth();
     this->previousState = state->getPreviousState();
     this->zeroX = state->getZeroX();
     this->zeroY = state->getZeroY();
     this->moveOrder = state->getMoveOrder();
+    this->currentDepth = state->currentDepth;
 }
 
 std::shared_ptr<State> State::Move(char direction) {
-    std::shared_ptr<State> newState = std::make_shared<State>(static_cast<const std::shared_ptr<State>>(this));
+    std::shared_ptr<State> newState = std::make_shared<State>((this));
     newState->move = direction;
     newState->moveOrder += direction;
     newState->previousState = static_cast<const std::shared_ptr<State>>(this);
     newState->currentDepth = ++currentDepth;
     switch(direction) {
         case UP:
-            if((zeroY == 0) && (move == 'D')) {
-                newState = nullptr;
-                break;
-            }
             Swap(newState, -1, 0);
             newState->setZeroX(newState->getZeroX() - 1);
             break;
         case DOWN:
-            if((zeroY == height - 1) && (move == 'U')) {
-                newState = nullptr;
-                break;
-            }
             Swap(newState, 1, 0);
             newState->setZeroX(newState->getZeroX() + 1);
             break;
         case LEFT:
-            if((zeroX == 0) && (move == 'R')) {
-                newState = nullptr;
-                break;
-            }
             Swap(newState, 0, -1);
             newState->setZeroY(newState->getZeroY() - 1);
             break;
         case RIGHT:
-            if((zeroX == width - 1) && (move == 'L')) {
-                newState = nullptr;
-                break;
-            }
             Swap(newState, 0, 1);
             newState->setZeroY(newState->getZeroY() + 1);
         default:
@@ -63,10 +50,29 @@ std::shared_ptr<State> State::Move(char direction) {
     return newState;
 }
 
-void State::Swap(const std::shared_ptr<State>& state, unsigned int x, unsigned int y) const {
+void State::Swap(std::shared_ptr<State> state, int x, int y) const {
     unsigned int tmp = state->getFields()[zeroX][zeroY];
     state->getFields()[zeroX][zeroY] = state->getFields()[zeroX + x][zeroY + y];
     state->getFields()[zeroX + x][zeroY + y] = tmp;
+}
+
+bool State::CheckIfMoveIsPossible(char d) {
+    bool backFlag = true;
+    bool forwardFlag = true;
+
+    if((zeroX == 0 && d == 'U') ||
+        (zeroX == height - 1 && d == 'D') ||
+        (zeroY == 0 && d == 'L') ||
+        (zeroY == width - 1 && d == 'R'))
+        forwardFlag = false;
+
+    if((move == 'U' && d == 'D') ||
+       (move == 'D' && d == 'U') ||
+       (move == 'L' && d == 'R') ||
+       (move == 'R' && d == 'L'))
+        backFlag = false;
+
+    return forwardFlag == backFlag;
 }
 
 bool State::CheckSolution() const {
@@ -75,6 +81,39 @@ bool State::CheckSolution() const {
             return false;
     return true;
 }
+
+bool State::CompareToFields(std::shared_ptr<State> state) {
+    for(size_t i = 0; i < height; i++) {
+        for(size_t j = 0; j < width; j++) {
+            if(fields[i][j] != state->getFields()[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+void State::PrintFields() {
+    for(size_t i = 0; i < height; i++) {
+        for(size_t j = 0; j < width; j++)
+            std::cout << fields[i][j] << " ";
+        std::cout << std::endl;
+    }
+}
+
+void State::CopyFields(std::shared_ptr<State> other) {
+    for(size_t i = 0; i < height; i++) {
+        for(size_t j = 0; j < width; j++)
+            this->fields[i][j] = other->getFields()[i][j];
+    }
+}
+
+void State::CopyFields(unsigned int **arr) {
+    for(size_t i = 0; i < height; i++) {
+        for(size_t j = 0; j < width; j++)
+            this->fields[i][j] = arr[i][j];
+    }
+}
+
 const std::shared_ptr<State> &State::getPreviousState() const {
     return previousState;
 }
@@ -83,7 +122,7 @@ const std::vector<std::shared_ptr<State>> &State::getNextStates() const {
     return nextStates;
 }
 
-unsigned int **State::getFields() const {
+std::vector<std::vector<unsigned int>> &State::getFields() {
     return fields;
 }
 
@@ -111,7 +150,7 @@ char State::getMove() const {
     return move;
 }
 
-const std::string &State::getMoveOrder() const {
+std::string State::getMoveOrder() {
     return moveOrder;
 }
 

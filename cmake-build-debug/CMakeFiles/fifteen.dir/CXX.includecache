@@ -7,6 +7,10 @@
 #IncludeRegexTransform: 
 
 D:/Studia/Semestr6/SISE/SISE-15/AStar.cpp
+algorithm
+-
+iostream
+-
 AStar.h
 D:/Studia/Semestr6/SISE/SISE-15/AStar.h
 
@@ -21,12 +25,6 @@ StatesSet.h
 D:/Studia/Semestr6/SISE/SISE-15/StatesSet.h
 
 D:/Studia/Semestr6/SISE/SISE-15/Solution.h
-
-D:/Studia/Semestr6/SISE/SISE-15/State.cpp
-State.h
-D:/Studia/Semestr6/SISE/SISE-15/State.h
-iostream
--
 
 D:/Studia/Semestr6/SISE/SISE-15/State.h
 vector
@@ -55,4 +53,6 @@ filesystem
 -
 State.h
 D:/Studia/Semestr6/SISE/SISE-15/State.h
+AStar.h
+D:/Studia/Semestr6/SISE/SISE-15/AStar.h
 
