@@ -22,11 +22,11 @@ State::State(State *state) {
     this->currentDepth = state->currentDepth;
 }
 
-std::shared_ptr<State> State::Move(char direction) {
-    std::shared_ptr<State> newState = std::make_shared<State>((this));
+State* State::Move(char direction) {
+    auto* newState = new State(this);
     newState->move = direction;
     newState->moveOrder += direction;
-    newState->previousState = static_cast<const std::shared_ptr<State>>(this);
+    newState->previousState = (this);
     newState->currentDepth = ++currentDepth;
     switch(direction) {
         case UP:
@@ -50,7 +50,7 @@ std::shared_ptr<State> State::Move(char direction) {
     return newState;
 }
 
-void State::Swap(std::shared_ptr<State> state, int x, int y) const {
+void State::Swap(State* state, int x, int y) const {
     unsigned int tmp = state->getFields()[zeroX][zeroY];
     state->getFields()[zeroX][zeroY] = state->getFields()[zeroX + x][zeroY + y];
     state->getFields()[zeroX + x][zeroY + y] = tmp;
@@ -82,7 +82,7 @@ bool State::CheckSolution() const {
     return true;
 }
 
-bool State::CompareToFields(std::shared_ptr<State> state) {
+bool State::CompareToFields(State* state) {
     for(size_t i = 0; i < height; i++) {
         for(size_t j = 0; j < width; j++) {
             if(fields[i][j] != state->getFields()[i][j])
@@ -100,7 +100,7 @@ void State::PrintFields() {
     }
 }
 
-void State::CopyFields(std::shared_ptr<State> other) {
+void State::CopyFields(State* other) {
     for(size_t i = 0; i < height; i++) {
         for(size_t j = 0; j < width; j++)
             this->fields[i][j] = other->getFields()[i][j];
@@ -114,11 +114,11 @@ void State::CopyFields(unsigned int **arr) {
     }
 }
 
-const std::shared_ptr<State> &State::getPreviousState() const {
+State* State::getPreviousState(){
     return previousState;
 }
 
-const std::vector<std::shared_ptr<State>> &State::getNextStates() const {
+const std::vector<State*> &State::getNextStates() const {
     return nextStates;
 }
 

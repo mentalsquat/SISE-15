@@ -2,7 +2,7 @@
 #include <iostream>
 #include "AStar.h"
 
-AStar::AStar(std::shared_ptr<State> initialState, std::string heuristic, Solution *solution) : initialState(initialState), heuristic(heuristic),
+AStar::AStar(State* initialState, std::string heuristic, Solution *solution) : initialState(initialState), heuristic(heuristic),
                                                                                                solution(solution) {
     solutionFields.resize(initialState->getHeight());
     for(size_t i = 0; i < initialState->getHeight(); i++) {
@@ -14,9 +14,9 @@ AStar::AStar(std::shared_ptr<State> initialState, std::string heuristic, Solutio
     solutionFields[initialState->getHeight() - 1][initialState->getWidth() - 1] = 0;
 }
 
-void AStar::FindSolution(std::shared_ptr<State> currentState) {
-    currentState = initialState;
-
+void AStar::FindSolution() {
+    State* currentState = initialState;
+    int s =0;
     openList.insert({INT_MAX, initialState});
     auto it = openList.begin();
     while(!openList.empty()) {
@@ -26,6 +26,7 @@ void AStar::FindSolution(std::shared_ptr<State> currentState) {
 
         if(!closedList.empty()) {
             while(!CheckHistory(currentState, closedList)) {
+                it = openList.begin();
                 currentState = it->state;
                 openList.erase(openList.begin());
             }
@@ -36,14 +37,14 @@ void AStar::FindSolution(std::shared_ptr<State> currentState) {
 
         if(currentState->CheckSolution()) {
 //            //solution->lengthOfSolution = (int) currentState->getMoveOrder().length();
-//            currentState->PrintFields();
+            currentState->PrintFields();
 //            std::shared_ptr<State> n = currentState;
 //            return n;
             break;
         }
 
 
-        std::shared_ptr<State> newState;
+        State* newState;
         for(int i = 0; i < possibleMoves; i++) {
             if(!currentState->CheckIfMoveIsPossible(directions[i]))
                 continue;
@@ -59,10 +60,9 @@ void AStar::FindSolution(std::shared_ptr<State> currentState) {
         closedList.push_back(currentState);
         solution->numberOfVisitedStates = closedList.size();
     }
-    return ;
 }
 
-unsigned int AStar::HammingDistance(std::shared_ptr<State> state) {
+unsigned int AStar::HammingDistance(State* state) {
     unsigned int distance = 0;
     for(size_t i = 0; i < state->getHeight(); i++)
         for(size_t j = 0; j < state->getHeight(); j++)
@@ -71,11 +71,11 @@ unsigned int AStar::HammingDistance(std::shared_ptr<State> state) {
     return distance;
 }
 
-unsigned int AStar::ManhattanDistance(std::shared_ptr<State> state) {
+unsigned int AStar::ManhattanDistance(State* state) {
     return 1;
 }
 
-bool AStar::CheckHistory(std::shared_ptr<State> state, std::vector<std::shared_ptr<State>> visited) {
+bool AStar::CheckHistory(State* state, std::vector<State*> visited) {
     for(const auto& s : visited) {
         if(s->CompareToFields(state))
             return false;

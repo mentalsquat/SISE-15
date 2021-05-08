@@ -4,10 +4,13 @@
 #include <ctime>
 #include <cstdlib>
 #include <filesystem>
+#include <Windows.h>
+#include <unistd.h>
+#include <chrono>
 #include "State.h"
 #include "AStar.h"
 
-std::shared_ptr<State> readFile(const char* path);
+State* readFile(const char* path);
 
 int main(int argc, char* argv[]) {
 
@@ -31,18 +34,19 @@ int main(int argc, char* argv[]) {
     solution->maxRecursiveDepth = 0;
     solution->elapsedTime = 0;
     solution->lengthOfSolution = -1;
-    std::shared_ptr<State> initialState = readFile("../4x4_01_00001.txt");
+    State* initialState = readFile("../4x4_07_00121.txt");
 
+    auto start = std::chrono::high_resolution_clock::now();
     AStar Astar(initialState, "hamm", solution);
-    std::shared_ptr<State> x;
-    Astar.FindSolution(x);
-    std::cout << "XD";
-
+    Astar.FindSolution();
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+    std::cout << duration.count();
 
     return 0;
 }
 
-std::shared_ptr<State> readFile(const char* path) {
+State* readFile(const char* path) {
     std::ifstream file(path);
     std::string line;
 
@@ -53,13 +57,10 @@ std::shared_ptr<State> readFile(const char* path) {
 
     if(file.is_open()) {
         file >> height >> width;
-       // arr = new unsigned int *[height];
         array.resize(height);
         for(size_t i = 0; i < height; i++) {
-            //arr[i] = new unsigned int[width];
             array[i] = std::vector<unsigned int>(width);
             for(size_t j = 0; j < width; j++) {
-                //file >> arr[i][j];
                 file >> array[i][j];
                 if(array[i][j] == 0) {
                     x = i;
@@ -71,7 +72,7 @@ std::shared_ptr<State> readFile(const char* path) {
     } else
         std::cout << "Unable to open file" << std::endl;
 
-    std::shared_ptr<State> state = std::make_shared<State>(array, x, y, height, width);
+    auto *state = new State(array, x, y, height, width);
 
     array.clear();
 

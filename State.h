@@ -12,8 +12,8 @@
 
 class State {
 private:
-    std::shared_ptr<State> previousState;
-    std::vector<std::shared_ptr<State>> nextStates;
+    State* previousState;
+    std::vector<State*> nextStates;
 
     std::vector<std::vector<unsigned int>> fields;
     unsigned int height;
@@ -29,19 +29,19 @@ public:
     explicit State(State *state);
     virtual ~State() = default;
 
-    std::shared_ptr<State> Move(char direction);
-    void Swap(std::shared_ptr<State> state, int x, int y) const;
+    State* Move(char direction);
+    void Swap(State* state, int x, int y) const;
     bool CheckIfMoveIsPossible(char direction);
 
     bool CheckSolution() const;
-    bool CompareToFields(std::shared_ptr<State> state);
+    bool CompareToFields(State* state);
 
     void PrintFields();
-    void CopyFields(std::shared_ptr<State> other);
+    void CopyFields(State* other);
     void CopyFields(unsigned int **arr);
 
-    const std::shared_ptr<State> &getPreviousState() const;
-    const std::vector<std::shared_ptr<State>> &getNextStates() const;
+    State* getPreviousState();
+    const std::vector<State*> &getNextStates() const;
     std::vector<std::vector<unsigned int>> &getFields();
     unsigned int getHeight() const;
     unsigned int getWidth() const;

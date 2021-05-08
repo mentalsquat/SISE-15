@@ -6,7 +6,7 @@
 class StatesSet {
 public:
     unsigned int heuristic;
-    std::shared_ptr<State> state;
+    State* state;
 
     bool operator < (const StatesSet& rhs) const { return heuristic<rhs.heuristic; }
     bool operator > (const StatesSet& rhs) const { return heuristic>rhs.heuristic; }

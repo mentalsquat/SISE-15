@@ -38,21 +38,3 @@ D:/Studia/Semestr6/SISE/SISE-15/StatesSet.h
 State.h
 D:/Studia/Semestr6/SISE/SISE-15/State.h
 
-D:/Studia/Semestr6/SISE/SISE-15/main.cpp
-iostream
--
-fstream
--
-string
--
-ctime
--
-cstdlib
--
-filesystem
--
-State.h
-D:/Studia/Semestr6/SISE/SISE-15/State.h
-AStar.h
-D:/Studia/Semestr6/SISE/SISE-15/AStar.h
-
