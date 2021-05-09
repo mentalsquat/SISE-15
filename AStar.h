@@ -2,6 +2,7 @@
 #define FIFTEEN_ASTAR_H
 
 #include <set>
+#include <unordered_set>
 #include "State.h"
 #include "Solution.h"
 #include "StatesSet.h"
@@ -15,7 +16,7 @@ private:
     const int possibleMoves = 4;
     const char directions[4] = {'L', 'R', 'U', 'D'};
     std::vector<std::vector<unsigned int>> solutionFields;
-    std::vector<State*> closedList;
+    std::unordered_set<State*> closedList;
 public:
     AStar(State* initialState, std::string heuristic, Solution *solution);
 
@@ -23,7 +24,9 @@ public:
     unsigned int HammingDistance(State* state);
     unsigned int ManhattanDistance(State* state);
 
-    bool CheckHistory(State* state, std::vector<State*> visited);
+    State *GetLowestPriorityAndDepthState();
+
+    bool CheckHistory(State* state);
 };
 
 

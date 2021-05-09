@@ -15,7 +15,7 @@ State::State(State *state) {
     this->fields = state->getFields();
     this->height = state->getHeight();
     this->width = state->getWidth();
-    this->previousState = state->getPreviousState();
+    //this->previousState = state->getPreviousState();
     this->zeroX = state->getZeroX();
     this->zeroY = state->getZeroY();
     this->moveOrder = state->getMoveOrder();
@@ -27,7 +27,7 @@ State* State::Move(char direction) {
     newState->move = direction;
     newState->moveOrder += direction;
     newState->previousState = (this);
-    newState->currentDepth = ++currentDepth;
+    newState->currentDepth = getCurrentDepth() + 1;
     switch(direction) {
         case UP:
             Swap(newState, -1, 0);

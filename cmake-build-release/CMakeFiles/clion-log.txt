@@ -1,0 +1,4 @@
+"D:\JetBrains\Clion\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - MinGW Makefiles" D:\Studia\Semestr6\SISE\SISE-15
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Studia/Semestr6/SISE/SISE-15/cmake-build-release

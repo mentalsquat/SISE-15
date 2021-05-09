@@ -88,6 +88,18 @@
 		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/AStar.h">
 			<Option target="fifteen"/>
 		</Unit>
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/BFS.cpp">
+			<Option target="fifteen"/>
+		</Unit>
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/BFS.h">
+			<Option target="fifteen"/>
+		</Unit>
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/DFS.cpp">
+			<Option target="fifteen"/>
+		</Unit>
+		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/DFS.h">
+			<Option target="fifteen"/>
+		</Unit>
 		<Unit filename="D:/Studia/Semestr6/SISE/SISE-15/Solution.h">
 			<Option target="fifteen"/>
 		</Unit>

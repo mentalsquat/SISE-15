@@ -7,7 +7,7 @@ typedef struct Solution {
     unsigned int numberOfVisitedStates = 0;
     unsigned int numberOfProcessedStates = 0;
     unsigned int maxRecursiveDepth = 0;
-    float elapsedTime = 0.0f;
+    double elapsedTime = 0.0;
 } Solution;
 
 
