@@ -12,21 +12,22 @@
 #include "BFS.h"
 #include "DFS.h"
 
-State* readFile(char* path);
+State* readFile(std::string path);
 void writeToFile(std::string basic, std::string extended, Solution *solution);
+void CombineResults(Solution *solution, std::string algorithm, std::string order);
 
 int main(int argc, char* argv[]) {
 
-//    if(argc != 6) {
-//        std::cout << "Wrong number of arguments" << std::endl;
-//        return EXIT_FAILURE;
-//    }
-//
-//    std::string algorithm = argv[1];
-//    std::string order = argv[2];
-//    std::string readPathFile = argv[3];
-//    std::string basicPathFile = argv[4];
-//    std::string advancePathFile = argv[5];
+    if(argc != 6) {
+        std::cout << "Wrong number of arguments" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    std::string algorithm = argv[1];
+    std::string order = argv[2];
+    std::string readPathFile = argv[3];
+    std::string basicPathFile = argv[4];
+    std::string advancePathFile = argv[5];
 
     auto *solution = new Solution();
     solution->numberOfVisitedStates = 0;
@@ -36,47 +37,53 @@ int main(int argc, char* argv[]) {
     solution->lengthOfSolution = -1;
 
     std::string s = "../data/";
-   // s.append(readPathFile);
-    //std::cout << s << std::endl;
-    State* initialState = readFile("D:\Studia\Semestr6\SISE\SISE-15\4x4_01_0001.txt");
+    s.append(readPathFile);
+    State* initialState = readFile("../data/4x4_01_00001.txt");
 
     std::chrono::steady_clock::time_point t1, t2;
 
-//    if(algorithm == "bfs") {
-//        BFS bfs(initialState, order, solution);
-//        t1 = std::chrono::steady_clock::now();
-//        bfs.FindSolution();
-//        t2 = std::chrono::steady_clock::now();
-//    } else if (algorithm == "dfs") {
-//        DFS dfs(initialState, order, solution);
-//        t1 = std::chrono::steady_clock::now();
-//        dfs.FindSolution();
-//        t2 = std::chrono::steady_clock::now();
-//    } else if (algorithm == "astr") {
-//        if(order == "manh") {
-//            AStar Astar(initialState, "manh", solution);
-//            t1 = std::chrono::steady_clock::now();
-//            Astar.FindSolution();
-//            t2 = std::chrono::steady_clock::now();
-//        } else if(order == "hamm") {
-//            AStar Astar(initialState, "hamm", solution);
-//            t1 = std::chrono::steady_clock::now();
-//            Astar.FindSolution();
-//            t2 = std::chrono::steady_clock::now();
-//        }
-//    }
-//    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-//    long long d = duration.count() * 1e-3;
-//    double result = (int)(d * 1000 + .5);
-//
-//    solution->elapsedTime = (double) result / 1000;
+    std::string out;
+    if(algorithm == "bfs") {
+        BFS bfs(initialState, order, solution);
+        t1 = std::chrono::steady_clock::now();
+        bfs.FindSolution();
+        t2 = std::chrono::steady_clock::now();
+    } else if (algorithm == "dfs") {
+        DFS dfs(initialState, order, solution);
+        t1 = std::chrono::steady_clock::now();
+        dfs.FindSolution();
+        t2 = std::chrono::steady_clock::now();
+    } else if (algorithm == "astr") {
+        if(order == "manh") {
+            AStar Astar(initialState, "manh", solution);
+            t1 = std::chrono::steady_clock::now();
+            Astar.FindSolution();
+            t2 = std::chrono::steady_clock::now();
+        } else if(order == "hamm") {
+            AStar Astar(initialState, "hamm", solution);
+            t1 = std::chrono::steady_clock::now();
+            Astar.FindSolution();
+            t2 = std::chrono::steady_clock::now();
+        }
+    }
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
+    double d = duration.count() * 1e-3;
+    double result = (int)(d * 1000 + .5);
 
-    writeToFile("basic.txt", "extented.txt", solution);
+    solution->elapsedTime = (double) result / 1000;
 
+    std::string b = "../data/result/";
+    b.append(algorithm + "/" + basicPathFile);
+
+    std::string e = "../data/result/";
+    e.append(algorithm + "/" + advancePathFile);
+
+    writeToFile(b, e, solution);
+    CombineResults(solution, algorithm, order);
     return 0;
 }
 
-State* readFile(char* path) {
+State* readFile(std::string path) {
     std::ifstream file(path);
     std::string line;
 
@@ -129,9 +136,25 @@ void writeToFile(std::string basic, std::string extended, Solution *solution) {
         extendedFile << solution->maxRecursiveDepth << "\n";
         extendedFile << solution->elapsedTime << "\n";
     } else
-        std::cout << "Unable to open basic file" << std::endl;
+        std::cout << "Unable to open extended file" << std::endl;
 
     extendedFile.close();
+}
 
+void CombineResults(Solution *solution, std::string algorithm, std::string order) {
+    std::string path = "../results.txt";
+    std::ofstream file(path, std::ios::out | std::ios::app);
 
+    if(file.is_open()) {
+        file << algorithm << " ";
+        file << order << " ";
+        file << solution->lengthOfSolution << " ";
+        file << solution->numberOfVisitedStates << " ";
+        file << solution->numberOfProcessedStates << " ";
+        file << solution->maxRecursiveDepth << " ";
+        file << solution->elapsedTime << " ";
+        file << "\n";
+    } else
+        std::cout << "Unable to open result file" << std::endl;
+    file.close();
 }

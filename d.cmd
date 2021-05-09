@@ -1,0 +1,81 @@
+param([string]$strategy, [string]$param)
+
+$Progcmd = 'D:\Studia\Semestr6\SISE\SISE-15\cmake-build-release\fifteen.exe'
+$Orders = @('RDUL', 'RDLU', 'DRUL', 'DRLU', 'LUDR',  'LURD', 'ULDR', 'ULRD')
+$Heuristics = @('hamm', 'manh')
+$InitFilenameRegex = '^[a-zA-Z0-9]+_[0-9]+_[0-9]+.txt$'
+
+function RunProg([string]$strategy, [string]$param) {
+    Get-ChildItem -File | Where-Object { $_.Name -match $InitFilenameRegex } | ForEach-Object {
+        $FilenameRoot = '{0}_{1}_{2}' -f $_.BaseName, $strategy, $param.ToLower()
+        $SolFilename = '{0}_sol.txt' -f $FilenameRoot
+        $StatsFilename = '{0}_stats.txt' -f $FilenameRoot
+        Invoke-Expression $('{0} {1} {2} {3} {4} {5}' -f $Progcmd, $strategy, $param, $_.Name, $SolFilename,
+                            $StatsFilename)
+    }
+}
+
+function RunBfs([string]$order) {
+    Write-Host '===> Strategy: bfs <==='
+    if ($order) {
+        Write-Host " -> Order: $order"
+        RunProg 'bfs' $order
+    } else {
+        foreach($o in $Orders) {
+            Write-Host " -> Order: $o"
+            RunProg 'bfs' $o
+        }
+    }
+}
+
+function RunDfs([string]$order) {
+    Write-Host '===> Strategy: dfs <==='
+    if ($order) {
+        Write-Host " -> Order: $order"
+        RunProg 'dfs' $order
+    } else {
+        foreach($o in $Orders) {
+            Write-Host " -> Order: $o"
+            RunProg 'dfs' $o
+        }
+    }
+}
+
+function RunAstr([string]$heuristic) {
+    Write-Host '===> Strategy: astr <==='
+    if ($heuristic) {
+        Write-Host " -> Heuristic: $heuristic"
+        RunProg 'astr' $heuristic
+    }
+    foreach($h in $Heuristics) {
+        Write-Host " -> Heuristic: $h"
+        RunProg 'astr' $h
+    }
+}
+
+function RunAll() {
+    RunBfs
+    RunDfs
+    RunAstr
+}
+
+# Parse arguments
+if (!$PSBoundParameters.ContainsKey('strategy') -and $PSBoundParameters.ContainsKey('param')) {
+    Write-Error $("Argument 'param' requires argument 'strategy'.")
+    exit 2
+}
+
+# Run a program solving the 15-puzzle using appropriate strategy/strategies
+if (!$PSBoundParameters.ContainsKey('strategy')) {
+    RunAll
+} else {
+    switch ($strategy.ToLower()) {
+        'bfs'  { RunBfs $param }
+        'dfs'  { RunDfs $param }
+        'astr' { RunAstr $param }
+        default {
+            Write-Error $("Unrecognized strategy: '{0}'." -f $strategy)
+            exit 1
+        }
+    }
+}
