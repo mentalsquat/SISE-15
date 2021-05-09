@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 
     std::string s = "../data/";
     s.append(readPathFile);
-    State* initialState = readFile("../data/4x4_01_00001.txt");
+    State* initialState = readFile(readPathFile);
 
     std::chrono::steady_clock::time_point t1, t2;
 
