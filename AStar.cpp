@@ -83,13 +83,3 @@ int AStar::ManhattanDistance(State* state) {
     }
     return distance;
 }
-
-
-bool AStar::CheckHistory(State *state) {
-    for(const auto& s : closedList) {
-        if(s->CompareToFields(state))
-            return true;
-    }
-    return false;
-}
-

@@ -24,8 +24,6 @@ public:
     void FindSolution();
     int HammingDistance(State* state);
     int ManhattanDistance(State* state);
-
-    bool CheckHistory(State* state);
 };
 
 

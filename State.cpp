@@ -15,7 +15,6 @@ State::State(State *state) {
     this->fields = state->getFields();
     this->height = state->getHeight();
     this->width = state->getWidth();
-    //this->previousState = state->getPreviousState();
     this->zeroX = state->getZeroX();
     this->zeroY = state->getZeroY();
     this->moveOrder = state->getMoveOrder();
@@ -26,24 +25,19 @@ State* State::Move(char direction) {
     auto* newState = new State(this);
     newState->move = direction;
     newState->moveOrder += direction;
-    newState->previousState = (this);
     newState->currentDepth = getCurrentDepth() + 1;
     switch(direction) {
         case UP:
             Swap(newState, -1, 0);
-            newState->setZeroX(newState->getZeroX() - 1);
             break;
         case DOWN:
             Swap(newState, 1, 0);
-            newState->setZeroX(newState->getZeroX() + 1);
             break;
         case LEFT:
             Swap(newState, 0, -1);
-            newState->setZeroY(newState->getZeroY() - 1);
             break;
         case RIGHT:
             Swap(newState, 0, 1);
-            newState->setZeroY(newState->getZeroY() + 1);
         default:
             break;
     }
@@ -54,6 +48,8 @@ void State::Swap(State* state, int x, int y) const {
     unsigned int tmp = state->getFields()[zeroX][zeroY];
     state->getFields()[zeroX][zeroY] = state->getFields()[zeroX + x][zeroY + y];
     state->getFields()[zeroX + x][zeroY + y] = tmp;
+    state->setZeroX(state->getZeroX() + x);
+    state->setZeroY(state->getZeroY() + y);
 }
 
 bool State::CheckIfMoveIsPossible(char d) {
@@ -73,6 +69,15 @@ bool State::CheckIfMoveIsPossible(char d) {
         backFlag = false;
 
     return forwardFlag == backFlag;
+}
+
+std::pair<unsigned int, unsigned int> State::GetIndexOf(int value) {
+    for(size_t i = 0; i < height; i++) {
+        for(size_t j = 0; j < width; j++) {
+            if(fields[i][j] == value)
+                return std::make_pair(i,j);
+        }
+    }
 }
 
 bool State::CheckSolution() const {
@@ -105,21 +110,6 @@ void State::CopyFields(State* other) {
         for(size_t j = 0; j < width; j++)
             this->fields[i][j] = other->getFields()[i][j];
     }
-}
-
-void State::CopyFields(unsigned int **arr) {
-    for(size_t i = 0; i < height; i++) {
-        for(size_t j = 0; j < width; j++)
-            this->fields[i][j] = arr[i][j];
-    }
-}
-
-State* State::getPreviousState(){
-    return previousState;
-}
-
-const std::vector<State*> &State::getNextStates() const {
-    return nextStates;
 }
 
 std::vector<std::vector<unsigned int>> &State::getFields() {

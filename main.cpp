@@ -29,6 +29,9 @@ int main(int argc, char* argv[]) {
     std::string basicPathFile = argv[4];
     std::string advancePathFile = argv[5];
 
+//    std::string algorithm = "dfs";
+//    std::string order = "DLUR";
+
     auto *solution = new Solution();
     solution->numberOfVisitedStates = 0;
     solution->numberOfProcessedStates = 0;
@@ -38,7 +41,8 @@ int main(int argc, char* argv[]) {
 
     std::string s = "../data/";
     s.append(readPathFile);
-    State* initialState = readFile(readPathFile);
+    State* initialState = readFile(s);
+    //State* initialState = readFile("../data/4x4_01_00001.txt");
 
     std::chrono::steady_clock::time_point t1, t2;
 

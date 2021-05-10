@@ -47,11 +47,3 @@ void BFS::FindSolution() {
     }
 }
 
-//bool BFS::CheckHistory(State* state, std::vector<State*> visited) {
-//    for(const auto& s : visited) {
-//        if(s->CompareToFields(state))
-//            return true;
-//    }
-//    return false;
-//}
-
