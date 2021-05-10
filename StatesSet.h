@@ -5,7 +5,7 @@
 
 class StatesSet {
 public:
-    unsigned int heuristic;
+    float heuristic;
     State* state;
 
     bool operator < (const StatesSet& rhs) const { return heuristic<rhs.heuristic; }

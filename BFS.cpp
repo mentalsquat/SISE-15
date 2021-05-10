@@ -12,14 +12,16 @@ BFS::BFS(State *initialState, std::string neighborhoodOrder, Solution *solution)
 
 void BFS::FindSolution() {
     std::deque<State*> frontier;
-    //std::vector<State*> visited;
     std::unordered_set<State*> visited;
 
     frontier.push_back(initialState);
+    solution->numberOfVisitedStates++;
     while(!frontier.empty()) {
         State *currentState = frontier.front();
         visited.insert(currentState);
         frontier.pop_front();
+
+        solution->numberOfProcessedStates++;
 
         if(solution->maxRecursiveDepth < currentState->getCurrentDepth())
             solution->maxRecursiveDepth = currentState->getCurrentDepth();
@@ -27,8 +29,6 @@ void BFS::FindSolution() {
         if(currentState->CheckSolution()) {
             solution->lengthOfSolution = currentState->getMoveOrder().size();
             solution->searchOrder = currentState->getMoveOrder();
-            solution->numberOfProcessedStates = visited.size();
-            solution->numberOfVisitedStates = visited.size() + frontier.size();
             break;
         }
 
@@ -37,6 +37,8 @@ void BFS::FindSolution() {
             if(!currentState->CheckIfMoveIsPossible(i))
                 continue;
             newState = currentState->Move(i);
+
+            solution->numberOfVisitedStates++;
 
             if(visited.count(currentState) != 0)
                 frontier.push_back(newState);

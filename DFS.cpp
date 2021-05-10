@@ -11,7 +11,7 @@ void DFS::FindSolution() {
 }
 
 bool DFS::Search(State *state, int currentDepth, Solution *solution) {
-    solution->numberOfVisitedStates++;
+    solution->numberOfProcessedStates++;
 
     if(solution->maxRecursiveDepth < currentDepth)
         solution->maxRecursiveDepth = currentDepth;
@@ -23,16 +23,16 @@ bool DFS::Search(State *state, int currentDepth, Solution *solution) {
         //state->PrintFields();
         return true;
     } else if(currentDepth != maxPossibleDepth) {
-        visited.insert({state, currentDepth});
+        visited.insert({state});
 
         State* newState;
         for(char i : neighborhoodOrder) {
             if(!state->CheckIfMoveIsPossible(i))
                 continue;
-            solution->numberOfProcessedStates++;
+            solution->numberOfVisitedStates++;
             newState = state->Move(i);
 
-            if(!CheckHistory(newState)) {
+            if(visited.find(state) != visited.end()) {
                 if(Search(newState,currentDepth + 1, solution)) {
                     return true;
                 }
@@ -40,16 +40,4 @@ bool DFS::Search(State *state, int currentDepth, Solution *solution) {
         }
     }
     return false;
-}
-
-bool DFS::CheckHistory(State *state) {
-    auto it = visited.find(state);
-    if (it == visited.end()) {
-        return false;
-    } else if (it->second > state->getCurrentDepth()) {
-        it->second = state->getCurrentDepth();
-        return false;
-    } else {
-        return true;
-    }
 }

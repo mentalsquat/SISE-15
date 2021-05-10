@@ -12,22 +12,21 @@ AStar::AStar(State* initialState, std::string heuristic, Solution *solution) : i
         }
     }
     solutionFields[initialState->getHeight() - 1][initialState->getWidth() - 1] = 0;
+    solutionState = new State(solutionFields,initialState->getHeight(), initialState->getWidth(),initialState->getHeight(), initialState->getWidth());
 }
 
 void AStar::FindSolution() {
-    State *currentState = initialState;
-    openList.insert({INT_MAX, initialState});
-
-    std::multiset<StatesSet, std::less<>>::iterator it;
+    State *currentState;
+    openList.insert({(float) INT_MAX, initialState});
 
     while(!openList.empty()) {
-        unsigned int oldPriority;
-        currentState = GetLowestPriorityAndDepthState();
+        currentState = openList.begin()->state;
+        openList.erase(openList.begin());
 
         if(!closedList.empty()) {
-            //while(CheckHistory(currentState)) {
             while(closedList.count(currentState) != 0) {
-                currentState = GetLowestPriorityAndDepthState();
+                currentState = openList.begin()->state;
+                openList.erase(openList.begin());
             }
         }
 
@@ -48,61 +47,43 @@ void AStar::FindSolution() {
                 continue;
             newState = currentState->Move(directions[i]);
 
-            solution->numberOfProcessedStates++;
+            solution->numberOfVisitedStates++;
 
-            unsigned int distance = (heuristic == "hamm") ? HammingDistance(newState) : ManhattanDistance(newState);
-            unsigned int priority = distance + newState->getCurrentDepth();
+            int distance = (heuristic == "hamm") ? HammingDistance(newState) : ManhattanDistance(newState);
+            float priority = distance * (1.0 + 1/10.0) + newState->getCurrentDepth();
 
             openList.insert({priority, newState});
         }
         closedList.insert(currentState);
-        solution->numberOfVisitedStates = closedList.size();
+        solution->numberOfProcessedStates++;
     }
 }
 
-
-State * AStar::GetLowestPriorityAndDepthState() {
-   std::multiset<StatesSet, std::less<>>::iterator it;
-   std::multiset<StatesSet, std::less<>>::iterator tmp;
-   State *state;
-
-   unsigned int min = openList.begin()->heuristic;
-   tmp = openList.begin();
-   for(it = openList.begin(); it != openList.end(); it++) {
-       if(it->heuristic > min)
-           break;
-       if(it->heuristic == min && (it->state->getCurrentDepth() < tmp->state->getCurrentDepth())) {
-           tmp = it;
-       }
-   }
-
-   state = tmp->state;
-   openList.erase(tmp);
-   return state;
-}
-
-unsigned int AStar::HammingDistance(State* state) {
-    unsigned int distance = 0;
+int AStar::HammingDistance(State* state) {
+    int distance = 0;
     for(size_t i = 0; i < state->getHeight(); i++)
-        for(size_t j = 0; j < state->getHeight(); j++)
+        for(size_t j = 0; j < state->getWidth(); j++)
             if(state->getFields()[i][j] != solutionFields[i][j])
                 distance++;
     return distance;
 }
 
-unsigned int AStar::ManhattanDistance(State* state) {
-    unsigned int distance = 0;
-    for (size_t i = 0; i < state->getHeight() * state->getHeight(); i++)
-        for (size_t j = 0; j < state->getHeight() * state->getHeight(); j++)
-            if(state->getFields()[i / state->getWidth()][i % state->getWidth()] == solutionFields[j / state->getWidth()][j % state->getWidth()]) {
-                unsigned int ax = i % state->getWidth();
-                unsigned int ay = i / state->getHeight();
-                unsigned int bx = j % state->getWidth();
-                unsigned int by = j / state->getHeight();
-                distance += (abs(ax - bx) + abs(ay - by));
+int AStar::ManhattanDistance(State* state) {
+    int distance = 0;
+    for(size_t i = 0; i < state->getHeight() ; i++) {
+        for(size_t j = 0; j < state->getWidth(); j++) {
+            unsigned int temp = state->getFields()[i][j];
+            if(temp != 0 && temp != solutionFields[i][j]) {
+                auto node = state->GetIndexOf(temp);
+                auto goal = solutionState->GetIndexOf(temp);
+
+                distance += abs(node.first - goal.first) + abs(node.second - goal.second);
             }
+        }
+    }
     return distance;
 }
+
 
 bool AStar::CheckHistory(State *state) {
     for(const auto& s : closedList) {

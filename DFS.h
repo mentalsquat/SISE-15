@@ -2,12 +2,13 @@
 #define FIFTEEN_DFS_H
 
 #include <unordered_map>
+#include <unordered_set>
 #include "State.h"
 #include "Solution.h"
 
 class DFS {
 private:
-    std::unordered_map<State*, int> visited;
+    std::unordered_set<State*> visited;
     Solution *solution;
     State *initialState;
     std::string neighborhoodOrder;
@@ -18,8 +19,6 @@ public:
 
     void FindSolution();
     bool Search(State *state, int currentDepth, Solution *solution);
-
-    bool CheckHistory(State *state);
 };
 
 

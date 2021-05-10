@@ -12,9 +12,6 @@
 
 class State {
 private:
-    State* previousState;
-    std::vector<State*> nextStates;
-
     std::vector<std::vector<unsigned int>> fields;
     unsigned int height;
     unsigned int width;
@@ -40,8 +37,8 @@ public:
     void CopyFields(State* other);
     void CopyFields(unsigned int **arr);
 
-    State* getPreviousState();
-    const std::vector<State*> &getNextStates() const;
+    std::pair<unsigned int, unsigned int> GetIndexOf(int value);
+
     std::vector<std::vector<unsigned int>> &getFields();
     unsigned int getHeight() const;
     unsigned int getWidth() const;
